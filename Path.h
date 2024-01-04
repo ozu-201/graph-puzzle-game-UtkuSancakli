@@ -9,8 +9,8 @@
 class Path {
 private:
     int distance;
-    int previous;
 public:
+    int previous;
     Path(int distance, int previous);
     Path() = default;
     int getDistance() const;

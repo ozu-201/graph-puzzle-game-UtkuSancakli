@@ -63,7 +63,7 @@ namespace array{
         }
     }
 
-    void Graph::breadthFirstSearch(bool *visited, int startNode, std::vector<std::string>) {
+    void Graph::breadthFirstSearch(bool *visited, int startNode) {
         int fromNode;
         Queue queue = Queue(100);
         queue.enqueue( Element(startNode));
@@ -74,7 +74,7 @@ namespace array{
                     if (!visited[toNode]){
                         visited[toNode] = true;
 
-                        std::cout << v.afromNode << "\n";
+                        //std::cout << v.afromNode << "\n";
                         queue.enqueue( Element(toNode));
                     }
                 }
@@ -98,7 +98,7 @@ namespace array{
         return shortestPaths;
     }
 
-    Path *Graph::dijkstra(int source) {
+    Path *Graph::dijkstra(int source, int to, std::vector <std::string> v) {
         Path* shortestPaths = initializePaths(source);
         MinHeap heap = MinHeap(vertexCount);
         for (int i = 0; i < vertexCount; i++){
@@ -116,6 +116,12 @@ namespace array{
                     shortestPaths[toNode].setPrevious(fromNode);
                 }
             }
+        }
+        std::cout << to << "\n-------" << std::endl;
+        Path wanted = shortestPaths[to];
+        for(int i = 0; i < vertexCount; i++){
+            std::cout << changeToName(wanted.previous, v) << std::endl;
+            wanted = shortestPaths[wanted.previous];
         }
         return shortestPaths;
     }
@@ -201,4 +207,9 @@ namespace array{
 
         return true;
     }
+
+    std::string Graph::changeToName(int previous, std::vector <std::string> v) {
+        return v[previous];
+    }
+
 }

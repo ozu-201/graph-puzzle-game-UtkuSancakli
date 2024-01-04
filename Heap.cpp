@@ -25,7 +25,7 @@ void Heap::swapNode(int index1, int index2) {
 }
 
 Heap::~Heap() {
-    delete[] array;
+//    delete[] array;
 }
 
 HeapNode Heap::deleteTop() {
